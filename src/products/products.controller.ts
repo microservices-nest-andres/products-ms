@@ -11,6 +11,7 @@ export class ProductsController {
 
   @MessagePattern({ cmd: 'create_product' })
   create(@Payload() createProductDto: CreateProductDto) {
+    console.log(createProductDto);
     return this.productsService.create(createProductDto);
   }
 
@@ -21,7 +22,7 @@ export class ProductsController {
 
   @MessagePattern({ cmd: 'find_one_product' })
   findOne(@Payload('id', ParseIntPipe) id: number) {
-    return this.productsService.findOne(+id);
+    return this.productsService.findOne(id);
   }
 
   @MessagePattern({ cmd: 'update_product' })
